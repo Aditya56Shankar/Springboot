@@ -1,0 +1,6 @@
+rootProject.name = 'journalApp'
+
+gradle.allprojects {
+    // Build output goes outside OneDrive
+    buildDir = "C:/gradle-build/${project.name}"
+}
