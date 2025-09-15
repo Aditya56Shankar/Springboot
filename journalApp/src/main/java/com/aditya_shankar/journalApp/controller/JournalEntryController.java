@@ -8,19 +8,13 @@ import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-<<<<<<< HEAD
-=======
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
->>>>>>> c210c02 (added authentication to journal entry)
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
-<<<<<<< HEAD
-=======
 import java.util.stream.Collectors;
->>>>>>> c210c02 (added authentication to journal entry)
 
 @RestController
 @RequestMapping("/journal")
@@ -31,11 +25,6 @@ public class JournalEntryController {
     private JournalEntryService journalEntryService;
     @Autowired
     private UserService userEntityService;
-<<<<<<< HEAD
-
-    @GetMapping("{userName}")
-    public ResponseEntity<?> getAllJournalEntryOfUser(@PathVariable String userName){
-=======
     @Autowired
     private UserService userService;
 
@@ -43,7 +32,6 @@ public class JournalEntryController {
     public ResponseEntity<?> getAllJournalEntryOfUser(){
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String userName = authentication.getName();
->>>>>>> c210c02 (added authentication to journal entry)
         User user=userEntityService.findByUserName(userName);
         List<JournalEntry> all=user.getJournalEntries();
         if(all!=null) {
@@ -54,14 +42,6 @@ public class JournalEntryController {
 
 
 
-<<<<<<< HEAD
-    @PostMapping("{UserName}")
-    public ResponseEntity<JournalEntry> createEntry(@RequestBody JournalEntry journalEntry,@PathVariable String UserName){
-        try {
-
-            journalEntryService.saveEntry(journalEntry,UserName);
-            return new ResponseEntity<>(journalEntry,HttpStatus.OK);
-=======
     @PostMapping
     public ResponseEntity<JournalEntry> createEntry(@RequestBody JournalEntry journalEntry){
         try {
@@ -69,7 +49,6 @@ public class JournalEntryController {
             String userName = authentication.getName();
             journalEntryService.saveEntry(journalEntry,userName);
             return new ResponseEntity<>(journalEntry,HttpStatus.CREATED);
->>>>>>> c210c02 (added authentication to journal entry)
         }
         catch (Exception e){
             return new ResponseEntity<>(journalEntry,HttpStatus.BAD_REQUEST);
@@ -80,11 +59,6 @@ public class JournalEntryController {
 
     @GetMapping("id/{id}")
     public ResponseEntity<JournalEntry> getJournalEntryById(@PathVariable ObjectId id){
-<<<<<<< HEAD
-        Optional<JournalEntry> journalEntry= journalEntryService.findById(id);
-        if(journalEntry.isPresent()){
-            return new ResponseEntity<>(journalEntry.get(),HttpStatus.OK);
-=======
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String userName = authentication.getName();
         User user=userService.findByUserName(userName);
@@ -94,7 +68,6 @@ public class JournalEntryController {
             if (journalEntry.isPresent()) {
                 return new ResponseEntity<>(journalEntry.get(), HttpStatus.OK);
             }
->>>>>>> c210c02 (added authentication to journal entry)
         }
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 
@@ -102,36 +75,16 @@ public class JournalEntryController {
 
 
 
-<<<<<<< HEAD
-    @DeleteMapping("id/{userName}/{id}")
-    public ResponseEntity<?> deleteById(@PathVariable ObjectId id,@PathVariable String userName){
-=======
     @DeleteMapping("id/{id}")
     public ResponseEntity<?> deleteById(@PathVariable ObjectId id){
         Authentication authentication=SecurityContextHolder.getContext().getAuthentication();
         String userName=authentication.getName();
->>>>>>> c210c02 (added authentication to journal entry)
         journalEntryService.deleteById(id,userName);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
 
 
-<<<<<<< HEAD
-    @PutMapping("id/{UserName}/{id}")
-    public ResponseEntity<?> updateid(
-            @PathVariable ObjectId id,
-            @PathVariable String UserName,
-            @RequestBody JournalEntry newEntry
-    ){
-        JournalEntry old =journalEntryService.findById(id).orElse(null);
-        if(old!=null){
-            old.setTitle(newEntry.getTitle() != null && !newEntry.getTitle().equals("")?newEntry.getTitle():old.getTitle());
-            old.setContent(newEntry.getContent()!=null&& !newEntry.getContent().equals("")?newEntry.getContent():old.getContent());
-            journalEntryService.saveEntry(old);
-            return new ResponseEntity<>(newEntry,HttpStatus.OK);
-        }
-=======
     @PutMapping("id/{id}")
     public ResponseEntity<?> updateid(@PathVariable ObjectId id, @RequestBody JournalEntry newEntry){
         Authentication authentication=SecurityContextHolder.getContext().getAuthentication();
@@ -155,7 +108,6 @@ public class JournalEntryController {
 //            journalEntryService.saveEntry(old);
 //            return new ResponseEntity<>(newEntry,HttpStatus.OK);
 //        }
->>>>>>> c210c02 (added authentication to journal entry)
 
 
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);

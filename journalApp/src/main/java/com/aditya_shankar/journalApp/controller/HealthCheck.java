@@ -20,11 +20,7 @@ public class HealthCheck {
     }
     @PostMapping("/createUser")
     public ResponseEntity<User> createUser(@RequestBody User user) {
-<<<<<<< HEAD
-        userService.saveUser(user);
-=======
         userService.saveNewUser(user);
->>>>>>> c210c02 (added authentication to journal entry)
         return new ResponseEntity<>(user, HttpStatus.CREATED);
     }
 

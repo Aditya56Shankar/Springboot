@@ -5,15 +5,10 @@ import org.bson.types.ObjectId;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Controller;
 
-<<<<<<< HEAD
-
-public interface JournalEntryRepo extends MongoRepository<JournalEntry, ObjectId> {
-=======
 import java.util.List;
 
 
 public interface JournalEntryRepo extends MongoRepository<JournalEntry, ObjectId> {
 //    List<JournalEntry> findByUser_Username(String username);
 
->>>>>>> c210c02 (added authentication to journal entry)
 }

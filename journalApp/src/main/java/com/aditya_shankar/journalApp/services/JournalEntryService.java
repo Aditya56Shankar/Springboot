@@ -52,13 +52,6 @@ public class JournalEntryService {
         return journalEntryRepo.findById(id);
     }
 
-<<<<<<< HEAD
-    public void deleteById(ObjectId id, String userName){
-        User user=userService.findByUserName(userName);
-        user.getJournalEntries().removeIf(x -> x.getId().equals(id));
-        userService.saveUser(user);
-        journalEntryRepo.deleteById(id);
-=======
     @Transactional
     public void deleteById(ObjectId id, String userName){
         try {
@@ -72,7 +65,6 @@ public class JournalEntryService {
             System.out.println(e);
             throw new RuntimeException("error in journal entry service delete method ",e);
         }
->>>>>>> c210c02 (added authentication to journal entry)
     }
 
 //    public JournalEntry savePdfEntry(JournalEntry entry, String userName) {
@@ -85,10 +77,7 @@ public class JournalEntryService {
 //                .map(JournalEntry::getPdfData)
 //                .orElse(null);
 //    }
-<<<<<<< HEAD
-=======
 //    public List<JournalEntry> findByUserName(String username){
 //        return journalEntryRepo.findByUser_Username(username);
 //    }
->>>>>>> c210c02 (added authentication to journal entry)
 }

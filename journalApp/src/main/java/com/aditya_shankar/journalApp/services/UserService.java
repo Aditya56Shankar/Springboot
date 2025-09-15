@@ -22,20 +22,12 @@ public class UserService {
         this.passwordEncoder = passwordEncoder;
     }
 
-<<<<<<< HEAD
-    public void saveUser(User user) {
-=======
     public void saveNewUser(User user) {
->>>>>>> c210c02 (added authentication to journal entry)
         user.setPass(passwordEncoder.encode(user.getPass()));
         user.setRoles(Arrays.asList("USER"));
         userRepo.save(user);
     }
-<<<<<<< HEAD
-    public void saveNewUser(User user) {
-=======
     public void saveUser(User user) {
->>>>>>> c210c02 (added authentication to journal entry)
 
         userRepo.save(user);
     }
