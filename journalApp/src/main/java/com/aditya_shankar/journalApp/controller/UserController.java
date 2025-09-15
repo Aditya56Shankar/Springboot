@@ -44,7 +44,11 @@ public class UserController {
         userInDb.setUsername(user.getUsername());
         userInDb.setPass(user.getPass()); // will be re-encoded inside saveUser()
 
+<<<<<<< HEAD
         userService.saveUser(userInDb);
+=======
+        userService.saveNewUser(userInDb);
+>>>>>>> c210c02 (added authentication to journal entry)
 
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
